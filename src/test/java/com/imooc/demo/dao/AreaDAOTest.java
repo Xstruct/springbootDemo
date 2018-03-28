@@ -34,9 +34,14 @@ public class AreaDAOTest {
 	}
 
 	@Test
-	@Ignore
 	public void testQueryAreaById() {
-		fail("Not yet implemented");
+		Area area = areaDAO.queryAreaById(1);
+		System.out.println(area.getAreaName());
+		System.out.println(area.getAreaId());
+		System.out.println(area.getCreateTime());
+		System.out.println(area.getLastEditTime());
+		System.out.println(area.getPriority());
+		assertEquals("东苑", area.getAreaName());
 	}
 
 	@Test
