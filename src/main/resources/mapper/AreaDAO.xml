@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration
-  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.imooc.demo.dao.AreaDAO">
-	<select id="queryArea" resultType="com.imooc.demo.entity.Area">
+	<resultMap type="com.imooc.demo.entity.Area" id="BaseResultMap">
+		<result column="area_id" property="areaId" jdbcType="INTEGER"/>
+		<result column="area_name" property="areaName" jdbcType="VARCHAR"/>
+		<result column="priority" property="priority" jdbcType="INTEGER"/>
+		<result column="create_time" property="createTime" jdbcType="DATE"/>
+		<result column="last_edit_time" property="lastEditTime" jdbcType="DATE"/>
+	</resultMap>
+	
+	<select id="queryArea" resultMap="BaseResultMap">
 		SELECT area_id, area_name, priority, create_time, last_edit_time
 		FROM tb_area
 		ORDER BY priority
@@ -22,7 +28,7 @@
 		VALUES
 		(#{areaName},#{priority},#{createTime},#{lastEditTime})
 	</insert>
-	<update id="updateArea" paramaterType="com.imooc.demo.entity.Area">
+	<update id="updateArea" parameterType="com.imooc.demo.entity.Area">
 		UPDATE tb_area
 		<set>
 			<if test="areaName!=null">area_name=#{areaName},</if>
