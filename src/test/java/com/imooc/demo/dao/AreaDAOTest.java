@@ -2,6 +2,7 @@ package com.imooc.demo.dao;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Ignore;
@@ -20,6 +21,7 @@ public class AreaDAOTest {
 	private AreaDAO areaDAO;
 	
 	@Test
+	@Ignore
 	public void testQueryArea() {
 		List<Area> areaList = areaDAO.queryArea();
 		for(Area area : areaList){
@@ -34,6 +36,7 @@ public class AreaDAOTest {
 	}
 
 	@Test
+	@Ignore
 	public void testQueryAreaById() {
 		Area area = areaDAO.queryAreaById(1);
 		System.out.println(area.getAreaName());
@@ -47,13 +50,23 @@ public class AreaDAOTest {
 	@Test
 	@Ignore
 	public void testInsertArea() {
-		fail("Not yet implemented");
+		Area area = new Area();
+		area.setAreaName("南苑");
+		area.setPriority(1);
+		area.setCreateTime(new Date());
+		int effectiveNum = areaDAO.insertArea(area);
+		assertEquals(1, effectiveNum);
 	}
 
 	@Test
 	@Ignore
 	public void testUpdateArea() {
-		fail("Not yet implemented");
+		Area area = new Area();
+		area.setAreaName("西苑");
+		area.setAreaId(3);
+		area.setLastEditTime(new Date());
+		int effectiveNUm = areaDAO.updateArea(area);
+		assertEquals(1, effectiveNUm);
 	}
 
 	@Test
